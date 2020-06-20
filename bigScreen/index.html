@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>样式</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/echarts.min.js"></script>
+        <script type="text/javascript" src="js/map/china.js"></script>
+        <script src="js/style.js"></script>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                /* font-family: Microsoft JhengHei; */
+            }
+            ul {
+                list-style: none;
+            }
+            body {
+                width: 100%;
+                height: 100%;
+                font-size: 14px;
+                font-family: 微软雅黑, Arial, 宋体;
+                width: 100%;
+                text-align: left;
+                word-break: break-all;
+            }
+            .watch {
+                width: 160px;
+                height: 70px;
+                text-align: center;
+                line-height: 70px;
+                border-radius: 10px;
+                border: 1px solid #308282;
+                background: #aec;
+                background: url('./img/sm-png.jpg');
+                background-size: 160px 70px;
+                cursor: pointer
+            }
+            #screen {
+                /* display: none; */
+                display: block;
+                width: 100%;
+                height: 100%;
+                background-image: url('./img/screen-all.png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -10;
+            }
+            .tit-box {
+                height: 9%;
+                text-align: center;
+            }
+            .title {
+                height: 100%;
+                width: fit-content; /* 自适应内容宽度*/
+                vertical-align: middle;
+                padding-top: 2.5%;
+                padding-right: 20px;
+                display: flex;
+                color: #fff;
+                margin: auto;
+                font-size: 24px;
+                font-weight: bolder;
+                text-shadow: 0px 0px 2px #fff; /* 字体阴影 */
+            }
+            .title img {
+                width: 30px;
+                height: 30px;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            .content {
+                width: 100%;
+                height: 91%;
+                display: flex;
+                padding: 1%;
+            }
+            .left {
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+            }
+            .zbtj, .pzdj, .xhnl {
+                width: 100%;
+                height: 33.3%;
+                
+                background: url('./img/sm-rectangle.png') no-repeat;
+                background-size: 100% 100%;
+            }
+            .pzdj, .xhnl {
+                margin-top: 3%;
+            }
+            .sm-tit, .mid-tit, .big-tit {
+                width: 100%;
+                height: 11%;
+                text-align: center;
+                color: #fff;
+                font-size: 20px;
+                font-weight: bold;
+                text-shadow: 0px 0px 2px #fff;
+                /* 高度不确定 内容垂直居中 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .mid-tit {
+                height: 16%;
+            }
+            .big-tit {
+                height: 6%;
+            }
+            .xhnl-tab li, .xhnl-tab0 li {
+                list-style: none;
+                float: left;
+                padding: 0.2rem 0.7rem;
+                margin-left: 6px;
+                position: relative;
+                color: #fff;
+                font-size: 0.5rem;
+                margin-top: 0.6rem;
+            }
+            .xhnl-tab0 li {
+                padding: 0.2rem 0.3rem;
+            }
+            .xhnl-tab::after, .xhnl-tab0::after {
+                content: '';
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .xhnl-tab ul::after, .xhnl-tab0 ul::after {
+                content: '';
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .xhnl-tab li::after, .xhnl-tab0 li::after {
+                /* border-radius: 3px; */
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                z-index: -1;
+                background-color: transparent;
+                border: 1px solid #1666bc;
+                -moz-transform: skewX(15deg);
+                -ms-transform: skewX(15deg);
+                -webkit-transform: skewX(15deg);
+                transform: skewX(15deg);
+            }
+            .xhnl-tab li:hover::after, .xhnl-tab0 li:hover::after {
+                background-color: rgba(22, 102, 188, 0.5);
+            }
+            /* .sm-box {
+                width: 5%;
+                height: 95%;
+                border-bottom: 1px solid #1763BA;
+                border-left: 1px solid #1763BA;
+                position: absolute;
+                top: 1%;
+                left: -2%;
+                z-index: 5;
+                background: #090A2C;
+            } */
+            .cont1 {
+                display: none;
+                width:100%; height: 100%;
+            }
+            .cont0 {
+                display: block;
+            }
+            .con2, .con1 {
+                display: none;
+                width:100%; height: 100%;
+            }
+            .xhnl-con .con0 {
+                display: block;
+            }
+            table {
+                width: 98%;
+                height: 70%;
+                margin: auto;
+                margin-top: 3%;
+                text-align: center; 
+                font-size: 12px; 
+                font-weight: 100; 
+                color: #fff; 
+                border-collapse: collapse;
+                
+            }
+            tr:nth-child(odd){background:#0E1D60;}  /* 各行变色*/
+            .middle {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            }
+            .data {
+                width: 95%;
+                height: 8%;
+                margin: 0 auto;
+                margin-top: 2%;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: nowrap;
+            }
+            .each-data {
+                width: 17%;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 300;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            .title-info {
+                white-space: nowrap;
+                padding-bottom: 9px;
+            }
+            .num-row {
+                height: 30%;
+                display: flex;
+                font-size: 0.8rem;
+            }
+            .numbg {
+                width: 20%;
+                padding: 5% auto;
+                margin-left: 4%;
+                background: url('./img/num-bg.png') no-repeat center center;
+                background-size: 250% 200%;
+                /* 垂直居中 */
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+            .bijiao {
+                padding-top: 7px;
+            }
+            .map {
+                width: 95%;
+                height: 60%;
+                margin: 0 auto;
+                margin-top: 4%;
+                background: url('./img/map-bg.png') no-repeat;
+                background-size: 100% 100%;
+            }
+            .navBox ul li h2{
+                background: url('./img/6.png') no-repeat center center;
+                cursor: pointer;
+                font-size: 14px;
+                color: #06D5FA;
+                padding-left: 14%;
+                white-space: nowrap; /*不换行*/
+                width: auto; /*根据内容确定*/ 
+            }
+            .map-word {
+                background: url('./img/6.png') no-repeat center center; 
+                width: 100%; 
+                text-align: center;
+                height: 300%; 
+                font-weight: bolder;
+                -webkit-transition: all 0.6s ease;
+                -moz-transition: all 0.6s ease;
+                -o-transition: all 0.6s ease;
+                -ms-transition: all 0.6s ease;
+            }
+            .map-word:hover {
+                color: #fff;
+            }
+            .navBox ul li i {
+                position: relative;
+                border-top: 0.37rem transparent dashed;
+                border-left: 0.37rem solid rgba(0, 0, 0, 0);
+                border-right: 0.37rem transparent dashed;
+                border-bottom: 0.37rem transparent dashed;
+                display: inline-block;
+                -webkit-transition: -webkit-transform 0.6s ease;
+                -moz-transition: -moz-transform 0.6s ease;
+                -o-transition: -o-transform 0.6s ease;
+                -ms-transition: -ms-transform 0.6s ease;
+                transform-origin: 4px 3px;
+                -webkit-transform: translate(0, -50%);
+                -moz-transform: translate(0, -50%);
+                -ms-transform: translate(0, -50%);
+                -o-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+            }
+            .navBox ul li h2 .arrowRot {
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                -o-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+            .secondary {
+                /* 小标题 */
+                overflow: hidden;
+                height: 0;
+                -webkit-transition: all 0.6s ease;
+                -moz-transition: all 0.6s ease;
+                -o-transition: all 0.6s ease;
+                -ms-transition: all 0.6s ease;
+            }
+            .secondary div {
+                padding: 0.1rem 0;
+                font-size: 0.13rem;
+                padding-left: 14%;
+                background-color: rgba(0, 0, 0, .1);
+                color: #06D5FA;
+                border-bottom: 0.8px solid #1748D1;
+                -webkit-transition: all 0.4s ease;
+                -moz-transition: all 0.4s ease;
+                -o-transition: all 0.4s ease;
+                -ms-transition: all 0.4s ease;
+            }
+            .secondary div:hover {
+                color: #fff;
+            }
+            .secondary .seconFocus {
+                background-color: #1acbfc;
+                -webkit-box-shadow: 3px 3px 3px #aa8c51;
+                -moz-box-shadow: 3px 3px 3px #aa8c51;
+                box-shadow: 3px 3px 3px #aa8c51;
+            }
+            .map-word1 {
+                background: rgba(255, 255, 255, 0.1);
+                color: #35BFE9;
+                padding-left: 14%;
+                font-weight: bolder;
+                border-bottom: 1px solid #1849D2;
+            }
+            .gdwtbshtj {
+                width: 95%;
+                height: 27%;
+                margin: 0 auto;
+                margin-top: 2%;
+                background: url(./img/mid-rectangle.png) no-repeat;
+                background-size: 100% 100%;
+            }
+            .right {
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+            }
+            .xzss {
+                width: 100%;
+                height: 66%;
+                margin: 0 auto;
+                background: url('./img/big-rectangle.png') no-repeat;
+                background-size: 100% 100%;
+            }
+            .each-xzss {
+                width: 100%;
+                height: 94%;
+                padding: 9% 0 2% 0;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .each-info {
+                width: 25%;
+                height: 33.3%;
+                text-align: center;
+                color: #fff;
+                font-size: 12px;
+                background-size: 100%;
+            }
+            .cir-box {
+                background: url('./img/circle0.png') no-repeat;
+                background-size: 100% ;
+            }
+            .num {
+                color: #06D5FA;
+                font-weight: bold;
+                font-size: 13px;
+                padding-top: 35%;
+            }
+            .unit {
+                font-weight: 100;
+                padding-bottom: 17%;
+            }
+            .xzss-tit {
+                padding-bottom: 6px;
+                text-shadow: 0 0 8px #397ce0;
+                background: url('./img/5.png') no-repeat; background-size: 100%; background-position: bottom;
+            }
+            .xzcckqzdmj {
+                width: 100%;
+                height: 33%;
+                margin: 0 auto;
+                margin-top: 3%;
+                background: url('./img/sm-rectangle.png') no-repeat;
+                background-size: 100% 100%;
+            }
+
+            
+        </style>
+    </head>
+
+    <body>
+        <!-- <div class="watch" onclick="show()"></div> -->
+        <div id="screen">
+            <div class="tit-box"><div class="title"><img  src="./img/icon.png" alt="">军队资产资源统计系统</div></div>
+            <div class="content">
+                <div class="left">
+                    <div class="zbtj">
+                        <div class="sm-tit">军队退役报废装备统计</div>
+                        <!-- <div id="chartone" style="width:100%; height: 89%; padding-top: 10px;"></div> -->
+                        <div class="xhnl-tab0">
+                            <ul style="white-space: nowrap; display: flex;">
+                                <li><div class="sm-box"></div>军队退役报废装备</li>
+                                <li>”十四五“期间军队退役报废装备物资</li>
+                            </ul>
+                        </div>
+                        <div class="xhnl-con"  style="width:100%; height: 71%; padding-top: 10px;">
+                            <div id="chartone" class="cont0" style="width:100%; height: 100%;"></div>
+                            <div id="chartwz" class="cont1" style="width:100%; height: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="pzdj">
+                        <div class="sm-tit">军队退役报废装备品质等级</div>
+                        <div id="charttwo" style="width:100%; height: 89%; padding-top: 10px;"></div>
+                    </div>
+                    <div class="xhnl">
+                        <div class="sm-tit">销毁能力</div>
+                        <div class="xhnl-tab" >
+                            <ul>
+                                <li><div class="sm-box"></div>现有人员</li>
+                                <li>设施</li>
+                                <li>设备</li>
+                            </ul>
+                        </div>
+                        <div class="xhnl-con"  style="width:100%; height: 74%; padding-top: 10px;">
+                            <div id="chartmain" class="con0" style="width:100%; height: 96%;"></div>
+                            <div id="chartss" class="con1" style="width:100%; height: 100%;"></div>
+                            <div id="chartsb" class="con2" style="width:100%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle">
+                    <div class="data">
+                        <div class="each-data">
+                            <div class="title-info">未注册单位</div>
+                            <div class="num-row">
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">5</div>
+                                <div class="numbg">0</div>
+                            </div>
+                            <div class="bijiao">较昨日+<span>0</span></div>
+                        </div>
+                        <div class="each-data">
+                            <div class="title-info">已注册单位</div>
+                            <div class="num-row">
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">5</div>
+                                <div class="numbg">0</div>
+                            </div>
+                            <div class="bijiao">较昨日+<span>0</span></div>
+                        </div>
+                        <div class="each-data">
+                            <div class="title-info">已上报数据单位</div>
+                            <div class="num-row">
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">5</div>
+                                <div class="numbg">0</div>
+                            </div>
+                            <div class="bijiao">较昨日+<span>0</span></div>
+                        </div>
+                        <div class="each-data">
+                            <div class="title-info">累计上报记录数</div>
+                            <div class="num-row">
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">5</div>
+                                <div class="numbg">0</div>
+                            </div>
+                            <div class="bijiao">较昨日+<span>0</span></div>
+                        </div>
+                        <div class="each-data">
+                            <div class="title-info">未上报记录单位数</div>
+                            <div class="num-row">
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">0</div>
+                                <div class="numbg">5</div>
+                                <div class="numbg">0</div>
+                            </div>
+                            <div class="bijiao">较昨日+<span>0</span></div>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <div style="position: relative; margin: 10px 0 0 20px;z-index: 10; width: 14%;height: 90%; overflow: hidden;">
+                            <div class="list">
+                                <ul>
+                                    <li>
+                                        <p class="title0">销毁力量</p>
+                                        <ul class='list-se'>
+                                            <p class="title0">销毁力量</p>
+                                            <li><p>坑道</p></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="title0">退役报废</p>
+                                        <ul class='list-se'>
+                                            <p class="title0">退役报废</p>
+                                            <li><p>货场</p></li>
+                                            <li><p>货场</p></li>
+                                            <li><p>货场</p></li>
+                                            <li><p>货场</p></li>
+                                            <li><p>货场</p></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="title0">闲置设施</p>
+                                        <ul class='list-se'>
+                                            <p class="title0">闲置设施</p>
+                                            <li><p>仓储</p></li>
+                                            <li><p>机场</p></li>
+                                            <li><p>码头</p></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="main" style="width: 97%; height: 94%; margin: 3% auto; top: -96%;"></div>
+                    </div>
+                    <div class="gdwtbshtj">
+                        <div class="mid-tit">各单位填报数据统计</div>
+                        <table>
+                            <tr style="color: #35B3DC; font-weight: 300;">
+                                <td>填报单位</td>
+                                <td>单位层级</td>
+                                <td>已提交记录数</td>
+                                <td>未提交记录数</td>
+                                <td>总记录数</td>
+                            </tr>
+                            <tr>
+                                <td>南部战区</td>
+                                <td>一级单位</td>
+                                <td>421214</td>
+                                <td>774254</td>
+                                <td>118456</td>
+                            </tr>
+                            <tr>
+                                <td>东部战区</td>
+                                <td>一级单位</td>
+                                <td>421214</td>
+                                <td>774254</td>
+                                <td>118456</td>
+                            </tr>
+                            <tr>
+                                <td>北部战区</td>
+                                <td>一级单位</td>
+                                <td>421214</td>
+                                <td>774254</td>
+                                <td>118456</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="xzss">
+                        <div class="big-tit">闲置设施</div>
+                        <div class="each-xzss">
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                            <div class="each-info">
+                                <div class="cir-box">
+                                    <div class="num">167.89</div>
+                                    <div class="unit">吨</div>
+                                </div>
+                                <div class="xzss-tit">码头可停靠</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xzcckqzdmj">
+                        <div class="sm-tit">闲置仓储库区占地面积</div>
+                        <div id="chartfour" style="width:100%; height: 89%; padding-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!-- <script src="https://cdn.bootcss.com/echarts/4.6.0/echarts.min.js"></script> -->
+    <script type="text/javascript">
+        window.onresize=function(){ //改变可视区域触发
+            location=location; //页面刷新
+        }
+
+        function show() {
+            document.getElementById("screen").style.display = 'block'
+        }
+
+        jQuery(document).ready(function($)
+        {
+            $('.list ul li p').clickdown();
+            $('.list-se p[class=title]').clickup();
+            $('.list>ul>li').ad();
+            console.log($().index())
+        });
+
+        // 切换装备统计
+        $(document).ready(function(){
+            $(".xhnl-tab0 ul li").click(function(){
+                var order = $(".xhnl-tab0 ul li").index(this)
+                $(".cont" + order).css('display','block')
+                $(".cont" + order).siblings("div").css('display','none')
+            })
+        })
+        // 切换销毁能力
+        $(document).ready(function(){
+            $(".xhnl-tab ul li").click(function(){
+                var order = $(".xhnl-tab ul li").index(this)
+                $(".con" + order).css('display','block')
+                $(".con" + order).siblings("div").css('display','none')
+            })
+        })
+
+        // 军队退役报废装备
+        var option1 = {
+            tooltip: {},
+            grid: {
+                left: 40,
+                top: 30,
+                bottom: 35
+            },
+            dataset: {
+                dimensions: ['product', '军队退役报废装备统计表', '”十四五“期间军队退役报废装备物资预测统计', ],
+                source: [
+                    {product: '武器装备', '军队退役报废装备统计表': 43.3},
+                    {product: '维修器材', '军队退役报废装备统计表': 83.1},
+                    {product: '弹药导弹', '军队退役报废装备统计表': 86.4},
+                    {product: '通用物资', '军队退役报废装备统计表': 72.4}
+                ]
+            },
+            xAxis: {
+                type: 'category',
+                axisTick: {show: false},
+                axisLine:{
+                    lineStyle:{
+                        show:false,
+                        color:'#6495C8', //横轴上的颜色
+                    }
+                },
+                axisLabel: {
+                    interval: 0,
+                    rotate: 0
+                },
+            },
+            yAxis: {
+                name: '单位:亿元',
+                nameLocation: "end",
+                nameTextStyle:{
+                    color:"#fff", 
+                    fontSize:12,
+                    fontWeight: 300,
+                },
+                type: 'value',
+                axisTick: {show: false},
+                axisLine:{
+                    show: false,  // 不显示y轴
+                    lineStyle:{
+                        color:'#6495C8', //纵轴上的颜色
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#0d2f64', // 网格线颜色
+                        width: 1,
+                        // opacity: 0.2
+                    }
+                },
+            },
+            series: [
+                {
+                    type: 'bar',
+                    barWidth : 16,//柱图宽度
+                    itemStyle: {   // 柱子渐变色
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                0,0,0,1,[
+                                {offset: 0, color: '#0F57DD'},   
+                                {offset: 1, color: '#092D79'}
+                                ]
+                            )
+                        }
+                    }
+                },
+            ]
+        }
+        //初始化echarts实例
+        var myChartone = echarts.init(document.getElementById('chartone'));
+        //使用制定的配置项和数据显示图表
+        myChartone.setOption(option1);
+
+
+        // 十四五“期间军队退役报废装备物资预测统计
+        var optionwz = {
+            tooltip: {},
+            grid: {
+                left: 40,
+                top: 30,
+                bottom: 35
+            },
+            dataset: {
+                source: [
+                    {product: '武器装备', '”十四五“期间军队退役报废装备物资预测统计': 85.8},
+                    {product: '维修器材', '”十四五“期间军队退役报废装备物资预测统计': 73.4},
+                    {product: '弹药导弹', '”十四五“期间军队退役报废装备物资预测统计': 65.2},
+                    {product: '通用物资', '”十四五“期间军队退役报废装备物资预测统计': 53.9}
+                ]
+            },
+            xAxis: {
+                type: 'category',
+                axisTick: {show: false},
+                axisLine:{
+                    lineStyle:{
+                        show:false,
+                        color:'#6495C8', //横轴上的颜色
+                    }
+                },
+                axisLabel: {
+                    interval: 0,
+                    rotate: 0
+                },
+            },
+            yAxis: {
+                name: '单位:亿元',
+                nameLocation: "end",
+                nameTextStyle:{
+                    color:"#fff", 
+                    fontSize:12,
+                    fontWeight: 300,
+                },
+                type: 'value',
+                axisTick: {show: false},
+                axisLine:{
+                    show: false,  // 不显示y轴
+                    lineStyle:{
+                        color:'#6495C8', //纵轴上的颜色
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#0d2f64', // 网格线颜色
+                        width: 1,
+                        // opacity: 0.2
+                    }
+                },
+            },
+            series: [
+                {
+                    type: 'bar',
+                    barWidth : 16,//柱图宽度
+                    itemStyle: {   // 柱子渐变色
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                0,0,0,1,[
+                                {offset: 0, color: '#F9F72D'},   
+                                {offset: 1, color: '#E9BF0F'}
+                                ]
+                            )
+                        }
+                    }
+                },
+            ]
+        }
+        $("#chartwz").css({"width":$(".xhnl-con").width(),"height":$(".xhnl-con").height()})
+        var myChartwz = echarts.init(document.getElementById('chartwz'));
+        myChartwz.setOption(optionwz);
+
+
+
+        // 军队退役报废装备品质等级
+        var option2 = {
+            color: ['#EFC532','#0FCF73','#2992DE'],
+            tooltip: {
+                trigger: 'item',
+                formatter: '武器装备{c}亿元  <br/> 维修器材{c}亿元  <br/> 弹药导弹{c}亿元} <br/> 通用物资{c}亿元',
+                // backgroundColor: 'transparent',
+            },
+            grid: {
+                x: 40,
+                y: 50,
+                x2: 35,
+                y: 100,
+            },
+            legend: {
+                icon: 'rect',
+                itemWidth:10,
+                itemHeight:10,
+                textStyle: {
+                    color: '#6495C8'
+                },
+                type: 'plain', 
+                data: ['一类', '二类', '三类']
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: ['28%', '50%'],
+                    center: ['50%', '60%'],
+                    label: {
+                        formatter: '{a|武器装备}{c}{a|亿元}\n  {a|维修器材}{d}{a|亿元}\n {a|弹药导弹}{e}{a|亿元}\n {a|通用物资}{f}{a|亿元}\n',
+                        backgroundColor: 'transparent',
+                        rich: {
+                            a: {
+                                color: '#fff',
+                                lineHeight: 22,
+                                align: 'center',
+                                fontSize: 12,
+                                fontWeight: 100,
+                            },
+                            hr: {
+                                // 下划线
+                                // borderColor: '#aaa',
+                                width: '100%',
+                                borderWidth: 0.5,
+                                height: 0
+                            },
+                        }
+                    },
+                    data: [
+                        {value: 335, name: '一类'},
+                        {value: 679, name: '二类'},
+                        {value: 1548, name: '三类'}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: ['50%', '60%'],
+                    selectedMode: 'single',
+                    radius: [0, '28%'],  //饼图大小
+                    label: {
+                        position: 'inner'
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: 335, name: '一类'},
+                        {value: 679, name: '二类'},
+                        {value: 1548, name: '三类'}
+                    ],
+                    itemStyle: {
+                        color: function(params) {
+                                var colorList = [
+                                    {
+                                        c1: ' #132874',  //一类
+                                        c2: '#0CABE9'                     
+                                    },
+                                    {
+                                        c1: ' #1F6CA6',  //二类
+                                        c2: '#268DD8'
+                                    },
+                                    {
+                                        c1: '#0E1C56',//三类
+                                        c2: '#1352BD'
+                                    }
+                                ]
+                                return new echarts.graphic.LinearGradient(1, 0, 0, 0, [{ //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                                    offset: 0,
+                                        color: colorList[params.dataIndex].c1
+                                    }, {
+                                        offset: 1,
+                                        color: colorList[params.dataIndex].c2
+                                    }]
+                                )                                    
+                                  /*  return colorList[params.dataIndex]*/
+                            }
+                    }
+                },
+            ]
+        }
+        //初始化echarts实例
+        var myCharttwo = echarts.init(document.getElementById('charttwo'));
+        //使用制定的配置项和数据显示图表
+        myCharttwo.setOption(option2);
+
+        // 销毁能力 - 现有人员
+        //指定图标的配置和数据
+        var option3 = {
+            color: ['#0F57DC', '#0C863D', '#F9FC14'],
+            tooltip: {
+            trigger: 'none',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            legend: {
+                // 标志图形类型 
+                icon: 'rect',
+                itemWidth:10,
+                itemHeight:10,
+                textStyle: {
+                    color: '#6495C8'
+                },
+                type: 'plain',          // 普通图例
+                data:['干部', '战士', '职工']
+            },
+            grid: {
+                left: 40,
+                right:10,
+                top: 35,
+                bottom: 35
+            },
+           	xAxis:{
+                typt: 'category',
+                axisTick: {show: false}, //取消刻度
+                axisLine:{
+                    lineStyle:{
+                        show:false,
+                        color:'#6495C8', //横轴上的颜色
+                    }
+                },
+                axisLabel: {
+                    interval: 0,
+                    rotate: 0
+                },
+               	data:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+           	},
+           	yAxis:{
+                name: '单位：人',
+                nameLocation: "end",
+                nameTextStyle:{
+                    color:"#fff", 
+                    fontSize:12,
+                    fontWeight: 300,
+                },
+                type: 'value',
+                axisTick: {show: false},
+                axisLine:{
+                    show: false,  // 不显示y轴
+                    lineStyle:{
+                        color:'#6495C8', //纵轴上的颜色
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#0D2B5C', // 网格线颜色
+                        width: 1,
+                        // opacity: 0.2
+                    }
+                },
+           	},
+           	series:[{
+                name: '干部',
+       			smooth: true,
+               	type:'line',
+                symbol: "none", // 去掉折线上面的小圆点
+               	data:[500,200,360,100,212,345,234,100,452,156,345,562]
+           	},
+            {
+                name: '战士',
+       			smooth: true,
+               	type:'line',
+                symbol: "none",
+               	data:[111,222,143,35,181,178,286,258,295,352,125,184]
+           	},
+               {
+                name: '职工',
+       			smooth: true,
+               	type:'line',
+                symbol: "none",
+               	data:[362,264,343,175,139,193,218,285,296,326,215,185]
+           	}]
+       		};
+        	var myChart = echarts.init(document.getElementById('chartmain'));
+        	myChart.setOption(option3);
+
+            
+            // 销毁能力 - 设施
+            var optionss = {
+                title: {
+                    text: '铁路专用站台：3154延米',
+                    x:'center',
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 12,
+                        fontWeight: 300,
+                    }
+                },
+                color: ['#3398DB'],
+                tooltip: {
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    top: '30%',
+                    left: '2%',
+                    right: '2%',
+                    bottom: '5%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['房间','工房','办公','生活','建筑'],
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+                    axisTick: {show: false},
+                    axisLine:{
+                        lineStyle:{
+                            show:false,
+                            color:'#114D94', //横轴上的颜色
+                        }
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#72ABE2'
+                        }
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    // y轴最大值结尾处添加单位name
+                    name: '单位：平方米',
+                    nameLocation: "end",
+                    nameTextStyle:{
+                        color:"#fff", 
+                        fontSize:12,
+                        fontWeight: 300,
+                    },
+                    axisTick: {show: false},
+                    axisLine:{
+                        show: false,  // 不显示y轴
+                        lineStyle:{
+                            color:'#0D2B5C', //纵轴上的颜色
+                        }
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: '#0D2B5C', // 网格线颜色
+                            width: 1,
+                            // opacity: 0.2
+                        }
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#72ABE2'
+                        }
+                    },
+                },
+                series: [
+                    {
+                        type: 'bar',
+                        barWidth: '30%',
+                        data:[100, 252, 200, 134, 390],
+                        itemStyle: {   // 柱子渐变色
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0,0,0,1,[
+                                    {offset: 0, color: '#0F57DD'},   
+                                    {offset: 1, color: '#092C79'}
+                                    ]
+                                )
+                            }
+                        }
+                    },
+                ]
+            }
+            $("#chartss").css({"width":$(".xhnl-con").width(),"height":$(".xhnl-con").height()})
+            var chartss = echarts.init(document.getElementById('chartss'))
+            chartss.setOption(optionss)
+
+            // 销毁能力 - 设备
+            var optionsb = {
+                tooltip: {  // 鼠标触发显示弹窗内容
+                    trigger: 'item',
+                    formatter: '{b}<br/>{c}台'
+                },
+                legend: {
+                    show: false,
+                    icon: 'rect',
+                    itemWidth:10,
+                    itemHeight:10,
+                    textStyle: {
+                        color: '#6495C8'
+                    },
+                    data: ['通用设备', '销毁设备', '运输车辆']
+                },
+                series: {
+                    type:'pie',
+                    center: ['50%','50%'], // 调整圆心
+                    radius: ['0%','70%'],
+                    roseType: 'area',
+                    data: [
+                        {value: 30546, name: '通用设备'},
+                        {value: 23635, name: '销毁设备'},
+                        {value: 35221, name: '运输车辆'}
+                    ],
+                    label: {
+                        // color: '#fff',
+                        formatter: '{a|{b}}\n {d|{c}}{a|台}',
+                        rich: {
+                            a: {
+                                color: '#fff',
+                                // lineHeight: 22,
+                                // align: 'center',
+                                // fontSize: 12,
+                                // fontWeight: 100,
+                            },
+                            d: {
+                                color: '#00cff0'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        lineStyle: {
+                            color: '#1461B5',
+                        }
+                    },
+                    itemStyle: {
+                        // 自定义饼图扇形颜色
+                        normal: {
+                            // 渐变色
+                            color: function(params) {
+                                var colorList = [
+                                    {
+                                        c1: ' #007EE3',  //通用设备
+                                        c2: '#00A2E2'                                                                   
+                                    },
+                                    {
+                                        c1: ' #992BC3',  //销毁设备
+                                        c2: '#E81C69'
+                                    },
+                                    {
+                                        c1: '#00D3EF',//运输车辆
+                                        c2: '#00ABFD'
+                                    }
+                                ]
+                                return new echarts.graphic.LinearGradient(1, 0, 0, 0, [{ //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                                    offset: 0,
+                                        color: colorList[params.dataIndex].c1
+                                    }, {
+                                        offset: 1,
+                                        color: colorList[params.dataIndex].c2
+                                    }]
+                                )                                    
+                                return colorList[params.dataIndex]
+                            }
+                            // 单色
+                            // color: function (params) {
+                            //     var colorList = ['#0088E3','#01BDF8','#DE1E83']
+                            //     return colorList[params.dataIndex]
+                            // },
+                        }
+                    }
+                }
+            }
+            $("#chartsb").css({"width":$(".xhnl-con").width(),"height":$(".xhnl-con").height()})
+            var chartsb = echarts.init(document.getElementById('chartsb'))
+            chartsb.setOption(optionsb)
+
+
+            // 闲置仓储库区占地面积
+            var option4 = {
+                color: ['#017DE2','#00C3F6','#ED1E72','#5255F6'],
+                grid:{
+                    top:'55%',//距上边距
+                    // left:'25%',//距离左边距
+                    // right:'25%',//距离右边距
+                    // bottom:'25%',//距离下边距
+                 },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}<br/>{c}平方米',
+                },
+                legend: {
+                    icon: "circle", 
+                    itemHeight  :9,//改变圆圈大小
+                    textStyle: {
+                        color: '#6495C8'
+                    },
+                    data: ['军队已撤编', '军队未撤编', '拟撤编地名兵武器仓库','独立坐落队属库']
+                },
+                graphic: [{ //环形图中间添加文字
+                    type: 'text', //通过不同top值可以设置上下显示
+                    left: 'center',
+                    top: '45%',
+                    style: {
+                        text: '库区总'+'\n'+'占地面积',
+                        textAlign: 'center',
+                        fill: '#6495C8', //文字的颜色
+                        width: 30,
+                        height: 30,
+                        fontSize: 12,
+                        fontFamily: "Microsoft YaHei"
+                    }
+                }],
+                series: [
+                    {
+                        name: '二类',
+                        type: 'pie',
+                        radius: ['30%', '55%'],
+                        label: {
+                            formatter: '{a|{b}}\n{c}亿元',
+                            backgroundColor: 'transparent',
+                            rich: {
+                                a: {
+                                    color: '#fff',
+                                    lineHeight: 22,
+                                    align: 'center',
+                                    fontSize: 12,
+                                    fontWeight: 100,
+                                }
+                            }
+                        },
+                        roseType: 'area',
+                        data: [
+                            {value: 335, name: '军队已撤编'},
+                            {value: 679, name: '军队未撤编'},
+                            {value: 1548, name: '拟撤编地名兵武器仓库'},
+                            {value: 1548, name: '独立坐落队属库'}
+                        ]
+                    }
+                ]
+            }
+            //初始化echarts实例
+            var myCharttfour = echarts.init(document.getElementById('chartfour'));
+            //使用制定的配置项和数据显示图表
+            myCharttfour.setOption(option4);
+
+
+
+            // 地图
+            var dataList=[
+            {name:"南海诸岛",value:0},
+            {name: '北京', value: randomValue()},
+            {name: '天津', value: randomValue()},
+            {name: '上海', value: randomValue()},
+            {name: '重庆', value: randomValue()},
+            {name: '河北', value: randomValue()},
+            {name: '河南', value: randomValue()},
+            {name: '云南', value: randomValue()},
+            {name: '辽宁', value: randomValue()},
+            {name: '黑龙江', value: randomValue()},
+            {name: '湖南', value: randomValue()},
+            {name: '安徽', value: randomValue()},
+            {name: '山东', value: randomValue()},
+            {name: '新疆', value: randomValue()},
+            {name: '江苏', value: randomValue()},
+            {name: '浙江', value: randomValue()},
+            {name: '江西', value: randomValue()},
+            {name: '湖北', value: randomValue()},
+            {name: '广西', value: randomValue()},
+            {name: '甘肃', value: randomValue()},
+            {name: '山西', value: randomValue()},
+            {name: '内蒙古', value: randomValue()},
+            {name: '陕西', value: randomValue()},
+            {name: '吉林', value: randomValue()},
+            {name: '福建', value: randomValue()},
+            {name: '贵州', value: randomValue()},
+            {name: '广东', value: randomValue()},
+            {name: '青海', value: randomValue()},
+            {name: '西藏', value: randomValue()},
+            {name: '四川', value: randomValue()},
+            {name: '宁夏', value: randomValue()},
+            {name: '海南', value: randomValue()},
+            {name: '台湾', value: randomValue()},
+            {name: '香港', value: randomValue()},
+            {name: '澳门', value: randomValue()}
+        ]
+            var myChart = echarts.init(document.getElementById('main'));
+            function randomValue() {
+                return Math.round(Math.random()*1000);
+            }
+            option = {
+                color: '#1622C6',
+                tooltip: {
+                    formatter:function(params,ticket, callback){
+                        return params.seriesName+'<br />'+params.name+'：'+params.value
+                    }//数据格式化
+                },
+                // visualMap: {
+                //     min: 0,
+                //     max: 1500,
+                //     left: 'left',
+                //     top: 'bottom',
+                //     text: ['高','低'],//取值范围的文字
+                //     inRange: {
+                //         color: ['#e0ffff', '#006edd']//取值范围的颜色
+                //     },
+                //     show:true//图注
+                // },
+                geo: {
+                    map: 'china',
+                    roam: false,//不开启缩放和平移
+                    zoom:1.23,//视角缩放比例
+                    left: '130',
+                    label: {
+                        normal: {
+                            show: false,
+                            fontSize:'10',
+                            color: 'rgba(255,255,255,0)'
+                        },
+                        emphasis: {
+                            show: false,
+                        }
+                    },
+                    itemStyle: {
+                        normal:{
+                            borderColor: '#28CEF3',
+                            areaColor:"#1623C6",//区域颜色
+                            borderWidth: .5,//区域边框宽度
+                            // areaStyle: {
+                            //     color: '#1623C6',//默认的地图板块颜色
+                            // },
+                            shadowBlur: 5,
+                            // shadowColor: '#28CEF3',
+                            // shadowOffsetX: 4,
+                            // shadowOffsetY: 4,
+                        },
+                        emphasis:{
+                            areaColor: '#28CEF3',//鼠标选择区域颜色
+                        }
+                    }
+                },
+                series : [
+                    {
+                        name: '信息量',
+                        type: 'map',
+                        geoIndex: 0,
+                        data:dataList,
+                        type: 'map',
+                        map: 'china',
+                        geoIndex: 1,
+                        aspectScale: 0.85, //长宽比
+                        showLegendSymbol: false, // 存在legend时显示
+                        label: {
+                            normal: {
+                                show: false,
+                            },
+                            emphasis: {
+                                show: false,
+                                textStyle: {
+                                    color: '#fff'
+                                }
+                            }
+                        },
+                        roam: false,
+                        itemStyle: {
+                            normal: {
+                                areaColor: '#006fff',
+                                borderColor: '#0145a4',
+                                borderWidth: 1
+                            },
+                            emphasis: {
+                                areaColor: '#006fff'
+                            }
+                        },
+                    }
+                ]
+            };
+            myChart.setOption(option);
+       
+    </script>
+</html>
