@@ -1,0 +1,60 @@
+.list{
+	width : 100%;
+}
+.list ul{
+	list-style: none;
+}
+.list>ul>li{
+	width: 100%;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	transition: .3s ease;
+}
+.list>ul>li p[class=title0]{
+	width: 100%;
+	text-align : center;
+	background : #EE4977;
+	padding: 5px 0 5px 14%;
+	margin-top: 10px;
+	border: none;
+	position: relative;
+	font-size: 14px;
+	background: url('../img/6.png') no-repeat center center;
+	white-space: nowrap;
+	color: #06d5fa;
+	cursor: pointer;
+}
+.list>ul>li p[class=title0]>span{
+	position: absolute;
+}
+.list-se{
+	overflow: hidden;
+	display: none;
+}
+.list-se>p{
+	color     :#ee4977;
+}
+.list-se>li{
+	position: relative;
+	right   : -100%;
+	-webkit-transition: right .5s;
+	-moz-transition: right .5s;
+	-o-transition: right .5s;
+	transition: right .5s;
+}
+.list-se>li>p{
+	background: rgba(0, 0, 0, 0);
+	color: #06d5fa;
+	-webkit-box-sizing :border-box;
+	        box-sizing :border-box;
+	padding: 5px 0 5px 14%;
+	border-bottom: 0.8px solid #1748d1;
+	-webkit-transition: border .5s; 
+			 transition: border .5s;
+	-webkit-transition: background .3s;
+			 transition: background .3s;
+}
+.list-se>li>p:hover{
+	color: #fff;
+}
