@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>军队资产资源统计系统</title>
+  <style>
+      *{
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+          font-size: 14px;
+      }
+      @media screen and (max-width: 650px){/* 可视区域小于 850px, 设置更小font-size属性 */
+        *{
+            font-size: 10%;
+            -webkit-text-size-adjust:none
+        }
+      }
+      .clickon, .clickon1 {
+          color: #328087;
+          width: 75px;
+      }
+      .clickon {
+          padding-left: 13px;
+      }
+      .clickon1 {
+          color: #000;
+      }
+      .tit {
+        height: 113px;
+        margin: 26px 82px 0 50px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 11px 15px 11px 15px;
+        display: flex;
+        overflow: hidden;
+      }
+      .icon {
+          width: 78px;
+          height: 78px;
+          margin-top: 4px;
+          border: 2px solid #328087;
+          border-radius: 50%;
+          background-image: url("./img/icon.png");
+          background-repeat: no-repeat;
+          background-size: 200% 150%;
+          background-position: center top;
+          display: flex;
+      }
+      .each-p {
+          width: 266px;
+          margin: 20px 40px 0 8px;
+          overflow: hidden;
+      }
+      .each-p p {
+          margin-bottom: 3px;
+      }
+      .border-green, .border-gray {
+          width: 90px;
+          height: 89px;
+          border: 2px solid #328087;
+          border-radius: 10px;
+      }
+      .border-gray {
+        border: 2px solid #d8d8d8;
+        color: #d8d8d8;
+      }
+      .content {
+        margin: 47px 50px 0 50px;
+      }
+      .one {
+          width: 23%;
+          height: 0;
+          padding-bottom: 17.25%;
+          margin: 0 2% 2% 0;
+          background-size: 100% 114%;
+          background-position: left center;
+          color: #fff;
+          border-radius: 10px;
+          overflow: hidden;
+      }
+      .layer {
+        width: 100%;
+        background: rgba(0, 0, 0, .4);
+        position: relative;
+        border-radius: 10px;
+        z-index: 1;
+      }
+      .smicon {
+        height: 0;
+        border-radius: 10px;
+        padding: 11% 0 46% 0;
+        text-align: center;
+        z-index: 10;
+      }
+      .smicon img {
+          width: 30%;
+      }
+      .smtitle {
+        text-align: center;
+        letter-spacing: 2px;
+        z-index: 10;
+        height: 0;
+        width: 100%;
+        padding-bottom: 18%;
+      }
+  </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="tit">
+            <div style="width: 78px; position: relative;">
+                <div class="icon"></div>
+            </div>
+            <div style="position: relative; width: 266px;">
+                <div class="each-p">
+                    <p>您好，封胜，祝您轻松每一天！</p>
+                    <p style="color: #aaa;">军区 | 管理员部门</p>
+                    <p style="color: #328087;">独立团团长</p>
+                </div>
+            </div>
+            <div style="display: flex;width: 576px;overflow: hidde;;">
+                <div class="border-green">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/yqm.png" alt="">
+                    <div style="text-align: center;">邀请码</div>
+                </div>
+                <img style="margin: 28px;" src="./img/green-right.png" alt="">
+                <div class="border-green">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjtb.png" alt="">
+                    <div style="text-align: center;">数据填报</div>
+                </div>
+                <img style="margin: 28px;" src="./img/green-right.png" alt="">
+                <div class="border-gray">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjhb.png" alt="">
+                    <div style="text-align: center;">数据汇总</div>
+                </div>
+                <img style="margin: 28px;" src="./img/gray-right.png" alt="">
+                <div class="border-gray">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjtj.png" alt="">
+                    <div style="text-align: center;">数据提交</div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div style="display: flex;flex-wrap: wrap;width: 100%;">
+                <div class="one" style="background-image: url('./img/tybfzb.png');">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/tybfzb0.png" alt=""></div>
+                        <div class="smtitle">退役报废装备</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/tybfzbwxqc.png');">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/tybfzbwxqc0.png" alt=""></div>
+                        <div class="smtitle">退役报废装备维修器材</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/dydd.png');">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/dydd0.png" alt=""></div>
+                        <div class="smtitle">退役报废弹药导弹</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/dyddhsly.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/dyddhsly0.png" alt=""></div>
+                        <div class="smtitle">退役报废弹药导弹回收利用品</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/wxsbjgj.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/wxsbjgj0.png" alt=""></div>
+                        <div class="smtitle">退役报废维修设备机工具</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/jxxlsbqc.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/jxxlsbqc0.png" alt=""></div>
+                        <div class="smtitle">退役报废教学训练设备器材</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/whxcsbqi.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/whxcsbqi0.png" alt=""></div>
+                        <div class="smtitle">退役报废文化宣传设备器材</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/hqwzqc.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/hqwzqc0.png" alt=""></div>
+                        <div class="smtitle">退役报废后勤物资器材</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/tyzbcbwzqc.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/tyzbcbwzqc0.png" alt=""></div>
+                        <div class="smtitle">退役战备储备物资器材</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/zbwzxhcllljg.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/xzccss0.png" alt=""></div>
+                        <div class="smtitle">退役报废装备物资销毁处理力量机构</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/xzccss.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/xianzhi.png" alt=""></div>
+                        <div class="smtitle">闲置仓储设施</div>
+                    </div>
+                </div>
+                <div class="one" style="background-image: url('./img/xzjcmtzt.png')">
+                    <div class="layer">
+                        <div class="smicon"><img src="./img/xzjcmtzt0.png" alt=""></div>
+                        <div class="smtitle">闲置机场、码头、站台、货场、坑道等实施</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
