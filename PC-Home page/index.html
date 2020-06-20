@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>军队资产资源统计系统</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style>
+      *{
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+          font-size: 14px;
+          font-family: 'Microsoft YaHei';
+      }
+      a {
+          text-decoration: none;
+      }
+      .clickon, .clickon1 {
+          color: #328087;
+          width: 75px;
+      }
+      .clickon {
+          padding-left: 13px;
+      }
+      .clickon1 {
+          color: #000;
+      }
+      .tit {
+        height: 113px;
+        margin: 26px 82px 0 50px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 11px 15px 11px 15px;
+        display: flex;
+        overflow: hidden;
+      }
+      .icon {
+          width: 78px;
+          height: 78px;
+          margin-top: 4px;
+          border: 2px solid #328087;
+          border-radius: 50%;
+          background-image: url("./img/icon.png");
+          background-repeat: no-repeat;
+          background-size: 200% 150%;
+          background-position: center top;
+          display: flex;
+      }
+      .each-p {
+          width: 266px;
+          margin: 20px 40px 0 8px;
+          overflow: hidden;
+      }
+      .each-p p {
+          margin-bottom: 3px;
+      }
+      .border-green, .border-gray {
+          width: 90px;
+          height: 89px;
+          border: 2px solid #328087;
+          border-radius: 10px;
+      }
+      .border-gray {
+        border: 2px solid #d8d8d8;
+        color: #d8d8d8;
+      }
+      .cont-tit {
+        display: flex; 
+        height: 50px; 
+        line-height: 50px;
+      }
+      .left {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .one, .one0, .cover {
+          width: 31%;
+          margin: 0 14px 14px 0;
+          background-size: 100% 114%;
+          background-position: left center;
+          color: #fff;
+          overflow: hidden;
+          width: 418px;
+          height: 200px;
+      }
+      .one {
+        position: relative;
+      }
+      .cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: none;
+        background-image: linear-gradient(rgba(69,94,91,0.7),rgba(18,29,29,1));
+        color: #fff; 
+        border: 5px solid #E9E11D; 
+        text-align: center;
+        font-size: 12px;
+      }
+      .cover table {
+        width: 100%; height: 100%;
+      }
+      .cover table td {
+        font-size: 137%;
+      }
+      .smicon {
+        height: 140px;
+        text-align: center;
+      }
+      .smtitle {
+        text-align: center;
+        letter-spacing: 2px;
+      }
+      .smicon img {
+        padding-top: 30px;
+        }
+      .content {
+        margin: 12px 46px 0 45px;
+        background: url(./img/bg786.png) no-repeat center center;
+        background-size: 100% 100%;
+      }
+      .content p{
+            font-size: 20px;
+        }
+      @media screen and (min-width: 1366px){
+        .content  * {
+            font-size: 18px;
+        }
+        /* .content {
+            margin: 12px 46px 0 45px;
+        } */
+        .row-one, .row-one1 {
+            display: flex;
+            overflow: hidden;
+        }
+        .row-one1 {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .row-one1 p:nth-child(1){
+            white-space: nowrap;
+        }
+        .row-one1 .one:nth-child(2){
+            width: 48%;
+            margin: 0 3% 14px 0;
+            height: 285px;
+        }
+        .row-one1 .one:nth-child(3){
+            width: 49%;
+            margin: 0 0 0 0;
+            height: 285px;
+        }
+        .row-one1 p:nth-child(4) {
+            margin: 10px 0 20px 0;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .row-one1 p, .left p {
+            width: 100%;
+            margin: 10px 0 20px 0;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .row-one1 .one:nth-child(5){
+            width: 100%;
+            height: 274px;
+            margin: 0;
+        }
+        .row-one1 .one:nth-child(5) img{
+            padding-top: 72px;
+        }
+        .row-one1 .smicon {
+            height: 180px;
+        }
+        .left {
+            width: 1296px;
+            float: left;
+        }
+        .right {
+            margin: 0 0 0 1296px;
+        }
+      }
+
+      @media screen and (max-width: 1366px){
+        .content  * {
+            font-size: 16px;
+        }
+        .row-one, .row-one1 {
+            width: 1296px;
+            display: flex; 
+            flex-wrap: nowrap;
+        }
+        
+        .left p {
+            width: 100%;
+            margin: 10px 0 20px 0;
+            font-weight: bold;
+        }
+        .row-one1 p {
+            display: none;
+        }
+      }
+  </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="tit">
+            <div style="width: 78px; position: relative;">
+                <div class="icon"></div>
+            </div>
+            <div style="position: relative; width: 266px;">
+                <div class="each-p">
+                    <p>您好，封胜，祝您轻松每一天！</p>
+                    <p style="color: #aaa;">军区 | 管理员部门</p>
+                    <p style="color: #328087;">独立团团长</p>
+                </div>
+            </div>
+            <div style="display: flex;width: 576px;overflow: hidde;;">
+                <div class="border-green">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/yqm.png" alt="">
+                    <div style="text-align: center;">邀请码</div>
+                </div>
+                <img style="margin: 28px;" src="./img/green-right.png" alt="">
+                <div class="border-green">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjtb.png" alt="">
+                    <div style="text-align: center;">数据填报</div>
+                </div>
+                <img style="margin: 28px;" src="./img/green-right.png" alt="">
+                <div class="border-gray">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjhb.png" alt="">
+                    <div style="text-align: center;">数据汇总</div>
+                </div>
+                <img style="margin: 28px;" src="./img/gray-right.png" alt="">
+                <div class="border-gray">
+                    <img style="width: 35px; margin:10px 0 6px 25px;" src="./img/sjtj.png" alt="">
+                    <div style="text-align: center;">数据提交</div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+                <p>军队退役报废装备资源</p>
+                <div class="row-one">
+                    <div class="one" style="background: rgba(107, 182, 185, 0.8);">
+                        <div>
+                            <div class="smicon"><img src="./img/tybfzb0.png" alt=""></div>
+                            <div class="smtitle">退役报废装备</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(80, 81, 183, 0.8);">
+                        <div>
+                            <div class="smicon"><img src="./img/tybfzbwxqc0.png" alt=""></div>
+                            <div class="smtitle">退役报废装备维修器材</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(223, 167, 68, 0.8);">
+                        <div>
+                            <div class="smicon"><img src="./img/dydd0.png" alt=""></div>
+                            <div class="smtitle">退役报废弹药导弹</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-one">
+                    <div class="one0" style="display: flex;">
+                        <div class="one" style=" width: 48%;margin: 0 14px 14px 0;background: #6A6AB0;">
+                            <div>
+                                <div class="smicon"><img src="./img/dyddhsly0.png" alt=""></div>
+                                <div class="smtitle">退役报废弹药导弹<br/>回收利用品</div>
+                            </div>
+                            <div class="cover">
+                                <table ><td >开始填报</td></table>
+                            </div>
+                        </div>
+                        
+                        <div class="one" style="width: 48%;background: rgba(101, 131, 249, 0.8); margin: 0;">
+                            <div>
+                                <div class="smicon"><img src="./img/wxsbjgj0.png" alt=""></div>
+                                <div class="smtitle">退役报废维修设<br/>备机工具</div>
+                            </div>
+                            <div class="cover">
+                                <table ><td >开始填报</td></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(137, 78, 52, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/jxxlsbqc0.png" alt=""></div>
+                            <div class="smtitle">退役报废教学训练设备器材</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(85, 142, 215, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/whxcsbqi0.png" alt=""></div>
+                            <div class="smtitle">退役报废文化宣传设备器材</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-one">
+                    <div class="one" style="background: rgba(141, 68, 127, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/hqwzqc0.png" alt=""></div>
+                            <div class="smtitle">退役报废后勤物资器材</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(72, 106, 140, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/tyzbcbwzqc0.png" alt=""></div>
+                            <div class="smtitle">退役战备储备物资器材</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(166, 189, 90, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/145qj.png" alt=""></div>
+                            <div class="smtitle">”十四五“期间军队退役报废物资预测统计表</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="right">
+                <div class="row-one1">
+                    <p>军队闲置仓储设施资源</p>
+                    <div class="one" style="background: rgba(100, 167, 171, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/xianzhi.png" alt=""></div>
+                            <div class="smtitle">闲置仓储设施</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <div class="one" style="background: rgba(188, 218, 136, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/xzjcmtzt0.png" alt=""></div>
+                            <div class="smtitle">闲置机场、码头、站台、货场、坑道等实施</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                    <p>军队销毁处理力量机构</p>
+                    <div class="one" style="background: rgba(230, 183, 109, 0.8)">
+                        <div>
+                            <div class="smicon"><img src="./img/xzccss0.png" alt=""></div>
+                            <div class="smtitle">退役报废装备物资销毁处理力量机构</div>
+                        </div>
+                        <div class="cover">
+                            <table ><td >开始填报</td></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onresize = function(){
+        $('.cover').css({'display':'none'})
+    }
+    $(".one").bind("mouseenter mouseleave", function (e) {
+        if(e.type == 'mouseenter'){
+            $(this).find('.cover').css({'display':'block'});
+        }else{
+            $(this).find('.cover').css({'display':'none'});
+        }
+    })
+</script>
+</html>
